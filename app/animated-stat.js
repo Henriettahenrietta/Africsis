@@ -29,7 +29,7 @@ export default function AnimatedStat({ value }) {
     if (!parsed) return;
 
     const start = Math.min(1, parsed.target);
-    const duration = 1400;
+    const duration = 3000;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setCount(parsed.target);
