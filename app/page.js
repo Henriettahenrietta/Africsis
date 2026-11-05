@@ -3,6 +3,7 @@ import { getSiteContent } from '../lib/site-content';
 import SiteHeader from './site-header';
 import SiteFooter from './site-footer';
 import ContactOpportunities from './contact-opportunities';
+import AnimatedStat from './animated-stat';
 
 const impactDetails = {
   'Nuclear safety and security policy intelligence':
@@ -39,7 +40,7 @@ export default async function HomePage() {
             <div className="stats-row">
               {stats.map((item) => (
                 <div key={item.label} className="stat-card">
-                  <strong>{item.value}</strong>
+                  <AnimatedStat value={item.value} />
                   <span>{item.label}</span>
                 </div>
               ))}
