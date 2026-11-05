@@ -189,7 +189,7 @@ export default function AdminEditor() {
               <a href="#statistics">Statistics</a>
               <a href="#programs">Programs</a>
               <a href="#engagement">Engagement</a>
-              <a href="#leadership">Leadership</a>
+              <a href="#leadership">Past events</a>
               <a href="#insights">Homepage insights</a>
               <a href="#news">News</a>
               <a href="#events">Events</a>
@@ -217,7 +217,7 @@ export default function AdminEditor() {
               <div className="panel-header"><h2>Impact and engagement</h2><button className="btn btn-secondary compact" type="button" onClick={() => addItem('homepage.engagements', 'New engagement')}>Add item</button></div>
               {(formData.homepage.engagements || []).map((item, index) => <div className="mini-editor" key={`${item}-${index}`}><input aria-label="Engagement text" value={item} onChange={(event) => updateString('homepage.engagements', index, event.target.value)} /><button className="btn btn-danger compact" type="button" onClick={() => removeItem('homepage.engagements', index)}>Delete</button></div>)}
             </section>
-            {editRecords({ title: 'Leadership', listName: 'homepage.leadership', sectionId: 'leadership', template: { name: 'New leader', title: 'Role', bio: '', image: '' }, fields: [['name', 'Name'], ['title', 'Role'], ['bio', 'Biography', true]], imageField: ['image', 'Portrait'] })}
+            {editRecords({ title: 'Past events', listName: 'homepage.leadership', sectionId: 'leadership', template: { name: 'New event', title: 'Event or engagement', bio: '', image: '' }, fields: [['name', 'Event name'], ['title', 'Event context'], ['bio', 'Event summary', true]], imageField: ['image', 'Event photo'] })}
             {editRecords({ title: 'Homepage insights', listName: 'homepage.insights', sectionId: 'insights', template: { category: 'News', title: 'New story', summary: '', image: '' }, fields: [['category', 'Category'], ['title', 'Title'], ['summary', 'Summary', true]], imageField: ['image', 'Story image'] })}
             {editRecords({ title: 'News', listName: 'news', sectionId: 'news', template: { title: 'New article', category: 'News', summary: '', date: new Date().toISOString().slice(0, 10) }, fields: [['title', 'Title'], ['category', 'Category'], ['date', 'Publication date', false, true], ['summary', 'Summary', true]] })}
             {editRecords({ title: 'Events', listName: 'events', sectionId: 'events', template: { title: 'New event', date: new Date().toISOString().slice(0, 10), location: '', description: '' }, fields: [['title', 'Title'], ['date', 'Date', false, true], ['location', 'Location'], ['description', 'Description', true]] })}

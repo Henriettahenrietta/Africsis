@@ -1,35 +1,27 @@
 import Image from 'next/image';
 import { getSiteContent } from '../lib/site-content';
+import SiteHeader from './site-header';
+import SiteFooter from './site-footer';
+import ContactOpportunities from './contact-opportunities';
+
+const impactDetails = {
+  'Nuclear safety and security policy intelligence':
+    'We turn current research and policy developments into clear analysis that supports informed decisions on nuclear safety and security.',
+  'Regional stakeholder mobilization and diplomacy':
+    'We help bring regional institutions, experts, and communities into practical dialogue and sustained cooperation.',
+  'Evidence-based research and strategic briefings':
+    'We connect rigorous research with concise briefings that help decision-makers understand risks, options, and next steps.',
+  'Youth and institutional capacity development':
+    'We support the next generation of leaders and strengthen institutional skills through learning, mentorship, and collaboration.',
+};
 
 export default async function HomePage() {
   const content = await getSiteContent();
-  const { hero, stats, programs, engagements, leadership, insights, cta, contact } = content;
+  const { hero, stats, programs, engagements, leadership: pastEvents, insights, cta, contact } = content;
 
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="container nav-wrap">
-          <div className="brand-block">
-            <div className="brand-mark">A</div>
-            <div className="brand-copy">
-              <span className="brand-name">AFRICSIS</span>
-              <span className="brand-tag">SCIENCE FOR PEACE</span>
-            </div>
-          </div>
-
-          <nav className="main-nav" aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#programs">Programs</a>
-            <a href="#impact">Impact</a>
-            <a href="#insights">Insights</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <div className="nav-cta">
-            <a href="#contact" className="btn btn-secondary">Partner</a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className="hero-section">
         <div className="hero-overlay" />
@@ -148,7 +140,15 @@ export default async function HomePage() {
             </p>
             <ul>
               {engagements.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>
+                  <details className="impact-detail">
+                    <summary>{item}</summary>
+                    <p>
+                      {impactDetails[item] ||
+                        'We work with partners to turn specialist knowledge into practical support for institutions and communities.'}
+                    </p>
+                  </details>
+                </li>
               ))}
             </ul>
           </div>
@@ -189,26 +189,26 @@ export default async function HomePage() {
       <section className="section leadership-section">
         <div className="container">
           <div className="section-heading center">
-            <p className="section-kicker">Leadership</p>
-            <h2>People driving the mission</h2>
+            <p className="section-kicker">Past events</p>
+            <h2>Highlights from AFRICSIS events and engagements</h2>
           </div>
 
           <div className="leadership-grid">
-            {leadership.map((member) => (
-              <article key={member.name} className="leader-card">
+            {pastEvents.map((event) => (
+              <article key={event.name} className="leader-card">
                 <div className="leader-photo-wrap">
                   <Image
-                    src={member.image}
-                    alt={member.name}
+                    src={event.image}
+                    alt={event.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="leader-photo"
                   />
                 </div>
                 <div className="leader-info">
-                  <h3>{member.name}</h3>
-                  <p className="leader-role">{member.title}</p>
-                  <p>{member.bio}</p>
+                  <h3>{event.name}</h3>
+                  <p className="leader-role">{event.title}</p>
+                  <p>{event.bio}</p>
                 </div>
               </article>
             ))}
@@ -259,11 +259,7 @@ export default async function HomePage() {
             <p>
               Whether you are a government agency, donor, research institution, or partner organization, AFRICSIS welcomes conversations that advance peace, security, and sustainable development.
             </p>
-            <ul>
-              {contact.list.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+            <ContactOpportunities items={contact.list} />
           </div>
 
           <form className="contact-form">
@@ -288,26 +284,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div className="container footer-wrap">
-          <div className="brand-block footer-brand">
-            <div className="brand-mark">A</div>
-            <div className="brand-copy">
-              <span className="brand-name">AFRICSIS</span>
-              <span className="brand-tag">SCIENCE FOR PEACE</span>
-            </div>
-          </div>
-
-          <div className="footer-links">
-            <a href="#about">About</a>
-            <a href="#programs">Programs</a>
-            <a href="#impact">Impact</a>
-            <a href="#contact">Contact</a>
-          </div>
-
-          <p>© 2026 AFRICSIS</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

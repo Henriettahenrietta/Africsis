@@ -1,32 +1,11 @@
-import Link from 'next/link';
+import SiteHeader from '../site-header';
+import SiteFooter from '../site-footer';
+import ContactOpportunities from '../contact-opportunities';
 
 export default function ContactPage() {
   return (
     <main className="site-page">
-      <header className="topbar">
-        <div className="container nav-wrap">
-          <Link href="/" className="brand-block">
-            <div className="brand-mark">A</div>
-            <div className="brand-copy">
-              <span className="brand-name">AFRICSIS</span>
-              <span className="brand-tag">SCIENCE FOR PEACE</span>
-            </div>
-          </Link>
-
-          <nav className="main-nav" aria-label="Main navigation">
-            <Link href="/about">About</Link>
-            <Link href="/programs">Programs</Link>
-            <Link href="/news">Insights</Link>
-            <Link href="/donate">Donate</Link>
-            <Link href="/contact">Contact</Link>
-          </nav>
-
-          <div className="nav-cta">
-            <Link href="/contact" className="btn btn-secondary">Partner</Link>
-            <Link href="/donate" className="btn btn-primary">Donate</Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className="page-hero dark-hero">
         <div className="container narrow">
@@ -41,12 +20,14 @@ export default function ContactPage() {
             <p>
               AFRICSIS welcomes partnerships with governments, researchers, donors, academic institutions, and civil society organizations that share our commitment to peace, security, and sustainable development.
             </p>
-            <ul>
-              <li>Research collaboration</li>
-              <li>Institutional partnerships</li>
-              <li>Capacity building</li>
-              <li>Strategic advising</li>
-            </ul>
+            <ContactOpportunities
+              items={[
+                'Research collaboration',
+                'Institutional partnerships',
+                'Capacity building',
+                'Strategic advising',
+              ]}
+            />
           </div>
 
           <form className="contact-form">
@@ -71,24 +52,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div className="container footer-wrap">
-          <div className="brand-block footer-brand">
-            <div className="brand-mark">A</div>
-            <div className="brand-copy">
-              <span className="brand-name">AFRICSIS</span>
-              <span className="brand-tag">SCIENCE FOR PEACE</span>
-            </div>
-          </div>
-          <div className="footer-links">
-            <Link href="/about">About</Link>
-            <Link href="/programs">Programs</Link>
-            <Link href="/news">News</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-          <p>© 2026 AFRICSIS</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
